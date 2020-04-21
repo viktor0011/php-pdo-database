@@ -1,5 +1,5 @@
 # php-pdo-database
-Connection to PDO database using PHP
+Connection to database in PHP using PDO
 
 A database class for PHP-MySQL which uses the PDO extension.
 I used singleton pattern, if this pattern doesn't work for your project, you can change it easily.
