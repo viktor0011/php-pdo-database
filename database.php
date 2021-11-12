@@ -1,5 +1,4 @@
 <? 
-define('TESTING',0);
 class database {
 	static public $db;  //for singleton
 	private $sQuery;
