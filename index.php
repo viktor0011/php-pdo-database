@@ -1,8 +1,8 @@
 <?
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'starconn_crm');
-define('DB_USER', 'starconn_test');
-define('DB_PASS', 'salut111');
+define('DB_NAME', 'db_name');
+define('DB_USER', 'db_user');
+define('DB_PASS', 'db_pass');
 define('TESTING', 1);
 
 require("database.php");
