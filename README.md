@@ -31,7 +31,7 @@ Below some examples of the basic functions of the database class.
 ```php
 <?php
 // Fetch whole table
-$persons = $db->query("SELECT * FROM persons");
+$persons = $this->query("SELECT * FROM persons");
 ```
 #### Fetching with Bindings (ANTI-SQL-INJECTION):
 Binding parameters is the best way to prevent SQL injection. The class prepares your SQL query and binds the parameters
@@ -41,16 +41,16 @@ There are three different ways to bind parameters.
 ```php
 <?php
 // 1. Read friendly method  
-$db->bind("id","1");
-$db->bind("firstname","John");
-$person   =  $db->query("SELECT * FROM Persons WHERE firstname = :firstname AND id = :id");
+$this->bind("id","1");
+$this->bind("firstname","John");
+$person   =  $this->query("SELECT * FROM Persons WHERE firstname = :firstname AND id = :id");
 
 // 2. Bind more parameters
-$db->bindMore(array("firstname"=>"John","id"=>"1"));
-$person   =  $db->query("SELECT * FROM Persons WHERE firstname = :firstname AND id = :id"));
+$this->bindMore(array("firstname"=>"John","id"=>"1"));
+$person   =  $this->query("SELECT * FROM Persons WHERE firstname = :firstname AND id = :id"));
 
 // 3. Or just give the parameters to the method
-$person   =  $db->query("SELECT * FROM Persons WHERE firstname = :firstname",array("firstname"=>"John","id"=>"1"));
+$person   =  $this->query("SELECT * FROM Persons WHERE firstname = :firstname",array("firstname"=>"John","id"=>"1"));
 ```
 
 #### Fetching Row:
@@ -58,7 +58,7 @@ This method always returns only 1 row.
 ```php
 <?php
 // Fetch a row
-$ages     =  $db->row("SELECT * FROM Persons WHERE  id = :id", array("id"=>"1"));
+$ages     =  $this->row("SELECT * FROM Persons WHERE  id = :id", array("id"=>"1"));
 ```
 ##### Result
 | id | firstname | lastname | sex | age
@@ -69,8 +69,8 @@ This method returns only one single value of a record.
 ```php
 <?php
 // Fetch one single value
-$db->bind("id","3");
-$firstname = $db->single("SELECT firstname FROM Persons WHERE id = :id");
+$this->bind("id","3");
+$firstname = $this->single("SELECT firstname FROM Persons WHERE id = :id");
 ```
 ##### Result
 |firstname
@@ -80,7 +80,7 @@ $firstname = $db->single("SELECT firstname FROM Persons WHERE id = :id");
 ```php
 <?php
 // Fetch a column
-$names    =  $db->column("SELECT Firstname FROM Persons");
+$names    =  $this->column("SELECT Firstname FROM Persons");
 ```
 ##### Result
 |firstname | 
@@ -96,13 +96,13 @@ When executing the delete, update, or insert statement by using the query method
 <?php
 
 // Delete
-$delete   =  $db->query("DELETE FROM Persons WHERE Id = :id", array("id"=>"1"));
+$delete   =  $this->query("DELETE FROM Persons WHERE Id = :id", array("id"=>"1"));
 
 // Update
-$update   =  $db->query("UPDATE Persons SET firstname = :f WHERE Id = :id", array("f"=>"Jan","id"=>"32"));
+$update   =  $this->query("UPDATE Persons SET firstname = :f WHERE Id = :id", array("f"=>"Jan","id"=>"32"));
 
 // Insert
-$insert   =  $db->query("INSERT INTO Persons(Firstname,Age) VALUES(:f,:age)", array("f"=>"Vivek","age"=>"20"));
+$insert   =  $this->query("INSERT INTO Persons(Firstname,Age) VALUES(:f,:age)", array("f"=>"Vivek","age"=>"20"));
 
 // Do something with the data 
 if($insert > 0 ) {
@@ -121,7 +121,7 @@ Here an example :
 ```php
 <?php
   // Fetch style as third parameter
-  $person_num =     $db->row("SELECT * FROM Persons WHERE id = :id", array("id"=>"1"), PDO::FETCH_NUM);
+  $person_num =     $this->row("SELECT * FROM Persons WHERE id = :id", array("id"=>"1"), PDO::FETCH_NUM);
 
   print_r($person_num);
   // Array ( [0] => 1 [1] => Johny [2] => Doe [3] => M [4] => 19 )
